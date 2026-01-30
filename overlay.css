@@ -53,6 +53,43 @@ a.yt-lockup-view-model__content-image {
   to { transform: rotate(360deg); }
 }
 
+.yt-summary-watch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  transition: background 0.2s;
+  margin-right: 8px;
+}
+
+.yt-summary-watch-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.yt-summary-watch-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.yt-summary-watch-btn.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.yt-summary-watch-btn.loading svg {
+  animation: spin 1s linear infinite;
+}
+
 .yt-summary-toast {
   position: fixed;
   bottom: 24px;

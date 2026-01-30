@@ -3,23 +3,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     openGeminiWithPrompt(request.prompt);
     sendResponse({ success: true });
   }
-  
-  if (request.action === 'openVideoAndSummarize') {
-    openVideoAndSummarize(request.videoId);
-    sendResponse({ success: true });
-  }
-  
   return true;
 });
-
-async function openVideoAndSummarize(videoId) {
-  const youtubeUrl = `https://www.youtube.com/watch?v=${videoId}`;
-  const prompt = `다음 YouTube 영상을 챕터별로 요약해줘. 챕터가 없다면 주요 내용을 시간순으로 정리해줘.
-
-${youtubeUrl}`;
-  
-  openGeminiWithPrompt(prompt);
-}
 
 async function openGeminiWithPrompt(prompt) {
   const tab = await chrome.tabs.create({
@@ -30,7 +15,7 @@ async function openGeminiWithPrompt(prompt) {
   chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
     if (tabId === tab.id && info.status === 'complete') {
       chrome.tabs.onUpdated.removeListener(listener);
-      
+
       setTimeout(() => {
         chrome.scripting.executeScript({
           target: { tabId: tab.id },
@@ -62,7 +47,7 @@ function insertPromptToGemini(prompt) {
         inputArea.dispatchEvent(new InputEvent('input', { bubbles: true }));
       }
       inputArea.focus();
-      
+
       setTimeout(() => clickSendButton(), 500);
     } else {
       setTimeout(() => tryInsert(attempts + 1), 500);
