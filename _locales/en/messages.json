@@ -1,0 +1,101 @@
+{
+  "extName": {
+    "message": "YouTube Summary with Gemini"
+  },
+  "extDescription": {
+    "message": "Summarizes YouTube videos by chapter and sends to Gemini"
+  },
+  "subtitle": {
+    "message": "Chapter-by-chapter summary with Gemini"
+  },
+  "loading": {
+    "message": "Loading info..."
+  },
+  "chaptersTitle": {
+    "message": "Chapters"
+  },
+  "noChapters": {
+    "message": "No chapters found. The entire video will be summarized."
+  },
+  "summarizeBtn": {
+    "message": "Summarize with Gemini"
+  },
+  "notYoutube": {
+    "message": "Please use this on a YouTube video page."
+  },
+  "extracting": {
+    "message": "Extracting..."
+  },
+  "geminiTabOpened": {
+    "message": "Gemini tab opened!"
+  },
+  "extractFailed": {
+    "message": "Failed to extract subtitles. Please try again."
+  },
+  "initFailed": {
+    "message": "Failed to load info. Please refresh the page and try again."
+  },
+  "promptTitle": {
+    "message": "Please summarize the following YouTube video."
+  },
+  "videoInfo": {
+    "message": "Video Info"
+  },
+  "titleLabel": {
+    "message": "Title"
+  },
+  "requestSection": {
+    "message": "Request"
+  },
+  "chaptersCountMessage": {
+    "message": "This video has $count$ chapters.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "summarizeByChapter": {
+    "message": "Please summarize the key points of each chapter."
+  },
+  "chapterPoints": {
+    "message": "3-5 key points per chapter"
+  },
+  "overallMessage": {
+    "message": "Overall message of the video"
+  },
+  "summarizeWhole": {
+    "message": "Please summarize the entire video in the following format:"
+  },
+  "coreTopics": {
+    "message": "Core topics and messages"
+  },
+  "mainPoints": {
+    "message": "5-7 main points"
+  },
+  "conclusions": {
+    "message": "Conclusions and key insights"
+  },
+  "transcript": {
+    "message": "Video Transcript"
+  },
+  "summary": {
+    "message": "Summary"
+  },
+  "promptSummarize": {
+    "message": "Summarize this YouTube video: $url$",
+    "placeholders": {
+      "url": {
+        "content": "$1",
+        "example": "https://www.youtube.com/watch?v=abc123"
+      }
+    }
+  },
+  "inputNotFound": {
+    "message": "Cannot find Gemini input field"
+  },
+  "sendBtnNotFound": {
+    "message": "Cannot find Gemini send button"
+  }
+}

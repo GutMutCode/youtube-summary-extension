@@ -1,4 +1,12 @@
+function applyI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.textContent = chrome.i18n.getMessage(key);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
+  applyI18n();
   const loadingEl = document.getElementById('loading');
   const errorEl = document.getElementById('error');
   const videoInfoEl = document.getElementById('video-info');
@@ -40,7 +48,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     summarizeBtn.addEventListener('click', async () => {
       summarizeBtn.disabled = true;
-      summarizeBtn.textContent = '추출 중...';
+      summarizeBtn.textContent = chrome.i18n.getMessage('extracting');
 
       try {
         extractedData = await chrome.tabs.sendMessage(tab.id, { action: 'extract' });
@@ -52,22 +60,22 @@ document.addEventListener('DOMContentLoaded', async () => {
           prompt: prompt
         });
 
-        summarizeBtn.textContent = 'Gemini 탭 열림!';
+        summarizeBtn.textContent = chrome.i18n.getMessage('geminiTabOpened');
         
         setTimeout(() => window.close(), 1000);
 
       } catch (err) {
-        console.error('추출 실패:', err);
+        console.error('Extract failed:', err);
         summarizeBtn.disabled = false;
-        summarizeBtn.textContent = 'Gemini로 요약하기';
-        showError('자막 추출에 실패했습니다. 다시 시도해주세요.');
+        summarizeBtn.textContent = chrome.i18n.getMessage('summarizeBtn');
+        showError(chrome.i18n.getMessage('extractFailed'));
       }
     });
 
   } catch (err) {
-    console.error('초기화 실패:', err);
+    console.error('Init failed:', err);
     loadingEl.classList.add('hidden');
-    showError('정보를 가져오는데 실패했습니다. 페이지를 새로고침 후 다시 시도해주세요.');
+    showError(chrome.i18n.getMessage('initFailed'));
   }
 
   function showError(message) {
@@ -77,34 +85,35 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function generatePrompt(data) {
     const hasChapters = data.chapters && data.chapters.length > 0;
+    const i18n = chrome.i18n.getMessage;
     
-    let prompt = `다음 YouTube 영상을 요약해주세요.
+    let prompt = `${i18n('promptTitle')}
 
-## 영상 정보
-- 제목: ${data.title}
+## ${i18n('videoInfo')}
+- ${i18n('titleLabel')}: ${data.title}
 - URL: ${data.url}
 
 `;
 
     if (hasChapters) {
-      prompt += `## 요청사항
-이 영상은 ${data.chapters.length}개의 챕터로 구성되어 있습니다.
-각 챕터별로 핵심 내용을 요약해주세요.
-- 각 챕터의 주요 포인트 3-5개
-- 전체 영상의 핵심 메시지
+      prompt += `## ${i18n('requestSection')}
+${i18n('chaptersCountMessage', [data.chapters.length.toString()])}
+${i18n('summarizeByChapter')}
+- ${i18n('chapterPoints')}
+- ${i18n('overallMessage')}
 
 `;
     } else {
-      prompt += `## 요청사항
-영상의 전체 내용을 다음 형식으로 요약해주세요:
-- 핵심 주제 및 메시지
-- 주요 포인트 5-7개
-- 결론 및 핵심 인사이트
+      prompt += `## ${i18n('requestSection')}
+${i18n('summarizeWhole')}
+- ${i18n('coreTopics')}
+- ${i18n('mainPoints')}
+- ${i18n('conclusions')}
 
 `;
     }
 
-    prompt += `## 영상 스크립트
+    prompt += `## ${i18n('transcript')}
 ${data.transcript}`;
 
     return prompt;

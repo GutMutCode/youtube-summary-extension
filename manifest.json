@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Summary with Gemini",
+  "name": "__MSG_extName__",
   "version": "1.0.0",
-  "description": "YouTube 영상을 챕터별로 요약하여 Gemini에 전송합니다",
+  "description": "__MSG_extDescription__",
+  "default_locale": "ko",
   "permissions": [
     "activeTab",
     "scripting",

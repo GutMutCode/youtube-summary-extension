@@ -30,7 +30,7 @@ async function openGeminiWithPrompt(prompt) {
 function insertPromptToGemini(prompt) {
   const tryInsert = (attempts = 0) => {
     if (attempts > 10) {
-      console.error('Gemini 입력창을 찾을 수 없습니다');
+      console.error('Cannot find Gemini input field');
       return;
     }
 
@@ -56,12 +56,11 @@ function insertPromptToGemini(prompt) {
 
   const clickSendButton = (attempts = 0) => {
     if (attempts > 10) {
-      console.error('Gemini 전송 버튼을 찾을 수 없습니다');
+      console.error('Cannot find Gemini send button');
       return;
     }
 
     const sendBtn = document.querySelector('button.send-button') ||
-                    document.querySelector('button[aria-label*="보내기"]') ||
                     document.querySelector('button[aria-label*="Send"]') ||
                     document.querySelector('.send-button-container button');
 

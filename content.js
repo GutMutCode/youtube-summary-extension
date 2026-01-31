@@ -23,7 +23,7 @@ function createSummaryIcon() {
 
 function summarizeVideo(videoId) {
   const url = `https://www.youtube.com/watch?v=${videoId}`;
-  const prompt = `이 YouTube 영상을 요약해줘: ${url}`;
+  const prompt = chrome.i18n.getMessage('promptSummarize', [url]);
 
   chrome.runtime.sendMessage({
     action: 'openGemini',
@@ -56,12 +56,12 @@ class WatchPageButton {
   createButton() {
     const btn = document.createElement('button');
     btn.className = 'yt-summary-watch-btn';
-    btn.title = 'Gemini로 요약하기';
+    btn.title = chrome.i18n.getMessage('summarizeBtn');
 
     btn.appendChild(createSummaryIcon());
 
     const text = document.createElement('span');
-    text.textContent = '요약';
+    text.textContent = chrome.i18n.getMessage('summary');
     btn.appendChild(text);
 
     btn.addEventListener('click', () => this.handleClick(btn));
@@ -127,7 +127,7 @@ class ThumbnailOverlay {
   createSummaryButton(videoId) {
     const btn = document.createElement('button');
     btn.className = 'yt-summary-btn';
-    btn.title = 'Gemini로 요약하기';
+    btn.title = chrome.i18n.getMessage('summarizeBtn');
     btn.appendChild(createSummaryIcon());
 
     btn.addEventListener('click', (e) => {

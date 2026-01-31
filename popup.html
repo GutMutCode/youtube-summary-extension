@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +10,13 @@
   <div class="container">
     <header>
       <h1>YouTube Summary</h1>
-      <p class="subtitle">Gemini로 챕터별 요약</p>
+      <p class="subtitle" data-i18n="subtitle"></p>
     </header>
 
     <div id="content">
       <div id="loading" class="hidden">
         <div class="spinner"></div>
-        <p>정보를 가져오는 중...</p>
+        <p data-i18n="loading"></p>
       </div>
 
       <div id="error" class="hidden">
@@ -27,18 +27,17 @@
         <div class="video-title"></div>
         
         <div class="chapters-section">
-          <h3>챕터 정보</h3>
+          <h3 data-i18n="chaptersTitle"></h3>
           <ul class="chapters-list"></ul>
-          <p class="no-chapters hidden">챕터가 없습니다. 전체 영상을 요약합니다.</p>
+          <p class="no-chapters hidden" data-i18n="noChapters"></p>
         </div>
 
-        <button id="summarize-btn" class="primary-btn">
-          Gemini로 요약하기
+        <button id="summarize-btn" class="primary-btn" data-i18n="summarizeBtn">
         </button>
       </div>
 
       <div id="not-youtube" class="hidden">
-        <p>YouTube 영상 페이지에서 사용해주세요.</p>
+        <p data-i18n="notYoutube"></p>
       </div>
     </div>
   </div>
